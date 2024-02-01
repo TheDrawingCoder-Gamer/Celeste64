@@ -64,12 +64,12 @@ public class Badeline : NPC
 
 	private CoEnumerator Conversation(Cutscene cs)
 	{
+		int index = Save.CurrentRecord.GetFlag(TALK_FLAG) + 1;
+		Save.CurrentRecord.IncFlag(TALK_FLAG);
 		yield return Co.Run(cs.MoveToDistance(World.Get<Player>(), Position.XY(), 16));
 		yield return Co.Run(cs.FaceEachOther(World.Get<Player>(), this));
 
-		int index = Save.CurrentRecord.GetFlag(TALK_FLAG) + 1;
 		yield return Co.Run(cs.Say(Assets.Dialog[$"Baddy{index}"]));
-		Save.CurrentRecord.IncFlag(TALK_FLAG);
 		CheckForDialog();
 	}
 
