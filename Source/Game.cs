@@ -37,8 +37,8 @@ public class Game : Module
 
 	public const string GamePath = "Celeste64";
 	public const string GameTitle = "Celeste 64: Fragments of the Mountain";
-	public const int Width = 640;
-	public const int Height = 360;
+	public const int Width = 1920;
+	public const int Height = 1080;
 	public static readonly Version Version = typeof(Game).Assembly.GetName().Version!;
 	public static readonly string VersionString = $"v.{Version.Major}.{Version.Minor}.{Version.Build}";
 

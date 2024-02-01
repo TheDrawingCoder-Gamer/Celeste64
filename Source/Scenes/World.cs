@@ -44,6 +44,7 @@ public class World : Scene
 	private int strawbCounterWas;
 
 	private bool IsInEndingArea => Get<Player>() is {} player && Overlaps<EndingArea>(player.Position);
+	private bool TalkedToBadeline => Save.CurrentRecord.GetFlag(Badeline.TALK_FLAG) > 0;
 	private bool IsPauseEnabled
 	{
 		get
@@ -275,13 +276,14 @@ public class World : Scene
 		// increment playtime (if not in the ending area)
 		if (!IsInEndingArea)
 		{
-			Save.CurrentRecord.Time += TimeSpan.FromSeconds(Time.Delta);
 			Game.Instance.Music.Set("at_baddy", 0);
 		}
 		else
 		{
 			Game.Instance.Music.Set("at_baddy", 1);
 		}
+		if (!TalkedToBadeline)	
+			Save.CurrentRecord.Time += TimeSpan.FromSeconds(Time.Delta);
 
 		// handle strawb counter
 		{
