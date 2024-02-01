@@ -629,7 +629,9 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 				mat.Color = color;
 				mat.Effects = 0;
 			}
-            mat.SilhouetteColor = color;
+	    Color modifiedColor = color * 0.8f;
+	    modifiedColor.A = 0xFF;
+	    mat.SilhouetteColor = modifiedColor;
 		}
 
 		Hair.Color = color;
